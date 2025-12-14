@@ -15,6 +15,28 @@
             <p>Discover wisdom from great minds</p>
         </header>
 
+        <div class="controls-top">
+            <div class="category-group">
+                <label for="category">Category</label>
+                <select id="category">
+                    <option value="all">All Categories</option>
+                    <option value="science">Science</option>
+                    <option value="philosophy">Philosophy</option>
+                    <option value="motivation">Motivation</option>
+                    <option value="literature">Literature</option>
+                </select>
+            </div>
+
+            <div class="theme-toggle">
+                <span>🌞</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>🌙</span>
+            </div>
+        </div>
+
         <div class="quote-card">
             <div class="quote-text" id="quoteText"></div>
             <div class="quote-author" id="quoteAuthor"></div>

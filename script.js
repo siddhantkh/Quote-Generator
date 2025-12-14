@@ -28,6 +28,8 @@ const quoteText = document.getElementById('quoteText');
 const quoteAuthor = document.getElementById('quoteAuthor');
 const quoteCategory = document.getElementById('quoteCategory');
 const counter = document.getElementById('counter');
+const categorySelect = document.getElementById('category');
+const themeToggle = document.getElementById('themeToggle');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const randomBtn = document.getElementById('randomBtn');
@@ -45,6 +47,19 @@ function updateButtonStates() {
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === filteredQuotes.length - 1;
 }
+
+function filterQuotes() {
+    const category = categorySelect.value;
+    if (category === 'all') {
+        filteredQuotes = [...quotes];
+    } else {
+        filteredQuotes = quotes.filter(q => q.category === category);
+    }
+    currentIndex = 0;
+    displayQuote(currentIndex);
+}
+
+categorySelect.addEventListener('change', filterQuotes);
 
 prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {
@@ -65,5 +80,21 @@ randomBtn.addEventListener('click', () => {
     currentIndex = randomIndex;
     displayQuote(currentIndex);
 });
+
+themeToggle.addEventListener('change', () => {
+    if (themeToggle.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    themeToggle.checked = true;
+    document.documentElement.setAttribute('data-theme', 'dark');
+}
 
 displayQuote(currentIndex);
