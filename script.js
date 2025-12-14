@@ -23,6 +23,7 @@ const quotes = [
 
 let currentIndex = 0;
 let filteredQuotes = [...quotes];
+let fontSize = 1.25;
 
 const quoteText = document.getElementById('quoteText');
 const quoteAuthor = document.getElementById('quoteAuthor');
@@ -33,6 +34,8 @@ const themeToggle = document.getElementById('themeToggle');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const randomBtn = document.getElementById('randomBtn');
+const decreaseFont = document.getElementById('decreaseFont');
+const increaseFont = document.getElementById('increaseFont');
 
 function displayQuote(index) {
     const quote = filteredQuotes[index];
@@ -88,6 +91,20 @@ themeToggle.addEventListener('change', () => {
     } else {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
+    }
+});
+
+decreaseFont.addEventListener('click', () => {
+    if (fontSize > 0.8) {
+        fontSize -= 0.1;
+        quoteText.style.fontSize = fontSize + 'rem';
+    }
+});
+
+increaseFont.addEventListener('click', () => {
+    if (fontSize < 2) {
+        fontSize += 0.1;
+        quoteText.style.fontSize = fontSize + 'rem';
     }
 });
 
